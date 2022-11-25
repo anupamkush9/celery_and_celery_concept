@@ -14,6 +14,10 @@ def add(x, y):
 def mul(x, y):
     return x * y
 
+@shared_task
+def printing_msg():
+    print("========printing msg===================")
+    return None
 
 @shared_task
 def xsum(numbers):
