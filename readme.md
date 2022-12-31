@@ -1,8 +1,13 @@
-### command for running viewing celery task console
-### OR 
-### command for view the console of celery   
+### command for view the console of celery  worker
+#### OR
+### starting celery worker
 
 $ celery -A <project_name> worker -l info
 
-## command for starting celery beat
+
+===========================================================
+
+### command for viewing the console of celery beat inside the celery worker
+#### OR
+### command for starting celery beat
  celery -A <project_name>  beat -l info
