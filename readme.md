@@ -5,7 +5,7 @@
 $ celery -A <project_name> worker -l info
 
 
-===========================================================
+=======================||====================================
 
 ### command for viewing the console of celery beat inside the celery worker
 #### OR
