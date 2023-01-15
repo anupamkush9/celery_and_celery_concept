@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6377:6377'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - cache:/data
+
+  celery_beat:
+    build: .
+    container_name: celery_beat
+    command: celery -A celery_p beat -l info
+    volumes:
+      - .:/src
+    depends_on:
+      - cache
+      - web
+
+
+  celery_api:
+    build: .
+    container_name: celery_irs_api
+    command: celery -A celery_p worker -l info -c 4
+    volumes:
+      - .:/src
+    depends_on:
+      - cache
+      - web
+
+volumes:
+  cache:
+    driver: local
+
