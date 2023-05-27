@@ -1,6 +1,7 @@
 # Create your tasks here
 
 from celery import shared_task
+import time
 
 
 @shared_task
@@ -13,6 +14,8 @@ def add(x, y):
 @shared_task
 def mul(x, y):
     print(x*y)
+    print("mul mehtod is running =======================")
+
     return x * y
 
 @shared_task
