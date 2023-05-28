@@ -13,16 +13,28 @@ services:
       - my_cache
     networks:
       - anupam      
+    logging:
+      driver: "awslogs"
+      options:
+          awslogs-region: "ap-south-1"
+          awslogs-group: "compliancely_logs_dev"
+          tag: "web_tag"
 
-  my_cache:
+  my_redis_cache:
     image: redis:latest
-    container_name: my_cache
+    container_name: my_redis_cache
     restart: always
     # command: redis-server --save 20 1 --loglevel warning
     # volumes: 
     #   - my_cache:/data
     networks:
-      - anupam    
+      - anupam
+    logging:
+      driver: "awslogs"
+      options:
+          awslogs-region: "ap-south-1"
+          awslogs-group: "compliancely_logs_dev"
+          tag: "my_redis_cache_tag"    
 
   celery_beat:
     build: .
@@ -35,6 +47,12 @@ services:
       - web
     networks:
       - anupam      
+    logging:
+      driver: "awslogs"
+      options:
+          awslogs-region: "ap-south-1"
+          awslogs-group: "compliancely_logs_dev"
+          tag: "my_celery_beat_tag"
 
 
   celery_api:
@@ -48,6 +66,12 @@ services:
       - web
     networks:
       - anupam
+    logging:
+      driver: "awslogs"
+      options:
+          awslogs-region: "ap-south-1"
+          awslogs-group: "compliancely_logs_dev"
+          tag: "my_celery_worker_tag"
 
 networks:
   anupam:
