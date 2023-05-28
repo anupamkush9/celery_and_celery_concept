@@ -121,9 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # Celery Configuration Options
-CELERY_BROKER_URL = 'redis://my_cache:6379'
+CELERY_BROKER_URL = 'redis://my_redis_cache:6379'
 # CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://my_cache:6379'
+CELERY_RESULT_BACKEND = 'redis://my_redis_cache:6379'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
