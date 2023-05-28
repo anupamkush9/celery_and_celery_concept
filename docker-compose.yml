@@ -14,11 +14,10 @@ services:
     networks:
       - anupam      
     logging:
-      driver: "awslogs"
+      driver: awslogs
       options:
-          awslogs-region: "ap-south-1"
-          awslogs-group: "compliancely_logs_dev"
-          tag: "web_tag"
+          awslogs-region: ap-south-1
+          awslogs-group: celery_and_celery_beat_logs
 
   my_redis_cache:
     image: redis:latest
@@ -30,11 +29,10 @@ services:
     networks:
       - anupam
     logging:
-      driver: "awslogs"
+      driver: awslogs
       options:
-          awslogs-region: "ap-south-1"
-          awslogs-group: "compliancely_logs_dev"
-          tag: "my_redis_cache_tag"    
+          awslogs-region: ap-south-1
+          awslogs-group: celery_and_celery_beat_logs   
 
   celery_beat:
     build: .
@@ -48,11 +46,10 @@ services:
     networks:
       - anupam      
     logging:
-      driver: "awslogs"
+      driver: awslogs
       options:
-          awslogs-region: "ap-south-1"
-          awslogs-group: "compliancely_logs_dev"
-          tag: "my_celery_beat_tag"
+          awslogs-region: ap-south-1
+          awslogs-group: celery_and_celery_beat_logs
 
 
   celery_api:
@@ -67,13 +64,11 @@ services:
     networks:
       - anupam
     logging:
-      driver: "awslogs"
+      driver: awslogs
       options:
-          awslogs-region: "ap-south-1"
-          awslogs-group: "compliancely_logs_dev"
-          tag: "my_celery_worker_tag"
+          awslogs-region: ap-south-1
+          awslogs-group: celery_and_celery_beat_logs
 
 networks:
   anupam:
     driver: bridge
-
