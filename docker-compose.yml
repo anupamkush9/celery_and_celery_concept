@@ -10,7 +10,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - my_cache
+      - my_redis_cache
     networks:
       - anupam      
     logging:
@@ -26,7 +26,7 @@ services:
     restart: always
     # command: redis-server --save 20 1 --loglevel warning
     # volumes: 
-    #   - my_cache:/data
+    #   - my_redis_cache:/data
     networks:
       - anupam
     logging:
@@ -43,7 +43,7 @@ services:
     volumes:
       - .:/src
     depends_on:
-      - my_cache
+      - my_redis_cache
       - web
     networks:
       - anupam      
@@ -62,7 +62,7 @@ services:
     volumes:
       - .:/src
     depends_on:
-      - my_cache
+      - my_redis_cache
       - web
     networks:
       - anupam
