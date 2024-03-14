@@ -31,6 +31,9 @@ def xsum(numbers):
 @shared_task
 def update_user():
     customer = Customer.objects.all()[0]
+    print("inside update_user ")
+    print("update_user customer.name",customer.name)
+    print("update_user customer.balance",customer.balance)
     customer.name = "ghghjgjkkjh"
     print("user is updating............")
     customer.save()

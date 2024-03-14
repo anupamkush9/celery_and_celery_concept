@@ -15,8 +15,16 @@ def Indexview(request):
     return HttpResponse("<h1>Hello world</h1>")
 
 def race_condition_view(request):
+    print("##"*500)
     customer = Customer.objects.all()[0]
+    print("++"*500)
+    print("inside race_condition_view ")
+    print("race_condition_view customer.name",customer.name)
+    print("race_condition_view customer.balance",customer.balance)
     customer.balance = 5
+    # what ever change will update_user method will make all of them will be discarded
+    # because lastly this view update code will run.
+    # that's why old name and new balance = 5 will be updated.
     update_user.delay()
     time.sleep(13)
     customer.save()
