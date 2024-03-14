@@ -1,7 +1,7 @@
 # Create your tasks here
 
 from celery import shared_task
-
+from .models import Customer
 
 @shared_task
 def add(x, y):
@@ -24,3 +24,10 @@ def printing_msg():
 def xsum(numbers):
     return sum(numbers)
 
+@shared_task
+def update_user():
+    customer = Customer.objects.all()[0]
+    customer.name = "ghghjgjkkjh"
+    print("user is updating............")
+    customer.save()
+    print("user updated............")
