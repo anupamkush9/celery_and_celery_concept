@@ -1,4 +1,6 @@
 /venv
 **.pyc**
+**.pyc
 **migrations**
-
+**__pycache__/
+*.pyc
