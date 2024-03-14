@@ -23,7 +23,7 @@ app.conf.beat_schedule = {
     # },
     'every-5-seconds': {
         'task': "projectApp.tasks.add",
-        "schedule": 5,
+        "schedule": 150,
         'args': (16, 16)
     }
 }
