@@ -20,7 +20,8 @@ services:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
           awslogs-create-group: "true"
-          tag: "Dev/{{.Name}}_{{.ID}}"
+          awslogs-stream: "django-web-log-stream"
+          # tag: "Dev/{{.Name}}_{{.ID}}"
 
   my_redis_cache:
     image: redis:latest
@@ -37,7 +38,8 @@ services:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
           awslogs-create-group: "true"
-          tag: "Dev/{{.Name}}_{{.ID}}"
+          awslogs-stream: "my_redis_cache-log-stream"
+          # tag: "Dev/{{.Name}}_{{.ID}}"
 
   celery_beat:
     build: .
@@ -56,7 +58,8 @@ services:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
           awslogs-create-group: "true"
-          tag: "Dev/{{.Name}}_{{.ID}}"
+          awslogs-stream: "my_celery_beat-log-stream"
+          # tag: "Dev/{{.Name}}_{{.ID}}"
 
 
   celery_api:
@@ -76,7 +79,8 @@ services:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
           awslogs-create-group: "true"
-          tag: "Dev/{{.Name}}_{{.ID}}"
+          awslogs-stream: "my_celery_worker-log-stream"
+          # tag: "Dev/{{.Name}}_{{.ID}}"
 
 networks:
   anupam:
