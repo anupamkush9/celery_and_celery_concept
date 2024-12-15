@@ -81,3 +81,6 @@ services:
 networks:
   anupam:
     driver: bridge
+
+# https://docs.docker.com/engine/logging/drivers/awslogs/#tag
+# reference for AWS CloudWatch Logs ( logging driver )
