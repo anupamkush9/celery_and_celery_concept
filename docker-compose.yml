@@ -4,6 +4,7 @@ services:
 
   web:
     build: .
+    container_name: django-web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -18,6 +19,7 @@ services:
       options:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
+          awslogs-create-group: "true"
           tag: "Dev/{{.Name}}_{{.ID}}"
 
   my_redis_cache:
@@ -34,12 +36,13 @@ services:
       options:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
+          awslogs-create-group: "true"
           tag: "Dev/{{.Name}}_{{.ID}}"
 
   celery_beat:
     build: .
     container_name: my_celery_beat
-    command: celery -A celery_p beat -l info
+    command: celery -A celery_p.celery_app beat -l info
     volumes:
       - .:/src
     depends_on:
@@ -52,13 +55,14 @@ services:
       options:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
+          awslogs-create-group: "true"
           tag: "Dev/{{.Name}}_{{.ID}}"
 
 
   celery_api:
     build: .
     container_name: my_celery_worker
-    command: celery -A celery_p worker -l info -c 4
+    command: celery -A celery_p.celery_app worker -l info -c 4
     volumes:
       - .:/src
     depends_on:
@@ -71,6 +75,7 @@ services:
       options:
           awslogs-region: ap-south-1
           awslogs-group: celery_and_celery_beat_logs
+          awslogs-create-group: "true"
           tag: "Dev/{{.Name}}_{{.ID}}"
 
 networks:
